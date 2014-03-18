@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Twitter App</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/justified-nav.css" rel="stylesheet">
+	<style type="text/css">
+		.wrapper-div {
+			overflow:scroll;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<h2>Twitter App</h2>
+		
+		<div class="row">
+			<div class="col-md-8">
+				&nbsp;
+			</div>
+			<div class="col-md-4">
+				<button class="btn btn-default" data-toggle="modal" data-target="#addTwitterModal">Add Main Twitter Account</button>
+				<button class="btn btn-default" id="reset">Reset</button>
+			</div>
+		
+		</div>
+			<table class="table">
+			<thead>
+			<tr>
+				<th>
+					Main Twitter Account	
+				</th>
+				<th>
+					Followers
+				</th>
+				<th>
+					Details
+				</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>
+					<ul id="accountList"></ul>
+				</td>
+				<td>
+					<ul id="followerList"></ul>
+				</td>
+				<td>
+					<div id="detail"></div>
+				</td>
+			</tr>
+			</tbody>
+			</table>	
+		
+	</div>
+
+	<div class="modal fade" id="addTwitterModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Add Root Twitter Account</h4>
+				</div>
+				<div class="modal-body">
+					<form id="twitterForm" role="form">
+						<div class="form-group">
+							<label for="newTwitterScreenName">Screen Name</label>
+							<input type="text" class="form-control focusedInput" id="newTwitterScreenName" placeholder="Enter screenName"/>
+						</div>
+					</form>
+				</div>				
+				<div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                <button type="button" class="btn btn-primary" id="save">Save</button>				
+				</div>				
+			</div>
+		</div>
+	</div>
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/loader.js"></script>
+
+</body>
+</html>
