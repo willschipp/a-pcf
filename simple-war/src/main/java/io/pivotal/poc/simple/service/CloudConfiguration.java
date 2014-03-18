@@ -10,17 +10,18 @@ import org.springframework.cloud.config.java.AbstractCloudConfig;
 
 public class CloudConfiguration extends AbstractCloudConfig {
 
-	private static final Logger logger = Logger.getLogger(CloudConfiguration.class);
+	private static final Logger LOGGER = Logger.getLogger(CloudConfiguration.class);
 	
 	private boolean initialized = true;
 	
 	public CloudConfiguration() {
+		super();
 		BeanFactory factory = new DefaultListableBeanFactory();
 		try {
 			this.setBeanFactory(factory);
 		}
 		catch (CloudException e) {
-			logger.warn("no cloud",e);//TODO clean up message
+			LOGGER.warn("no cloud",e);//TODO clean up message
 			initialized = false;
 		}
 	}

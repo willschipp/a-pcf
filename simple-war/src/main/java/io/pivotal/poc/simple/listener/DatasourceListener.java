@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 @WebListener
 public class DatasourceListener implements ServletContextListener {
 	
-	private static final Logger logger = Logger.getLogger(DatasourceListener.class);
+	private static final Logger LOGGER = Logger.getLogger(DatasourceListener.class);
 
 	private CloudConfiguration cloudConfiguration = new CloudConfiguration();
 	
@@ -22,7 +22,7 @@ public class DatasourceListener implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		if (!bindCloudDataSource(sce)) {
-			logger.warn("not running in the cloud");;
+			LOGGER.warn("not running in the cloud");
 			bindLocalDataSource(sce);
 		}//end if
 	}
@@ -33,7 +33,7 @@ public class DatasourceListener implements ServletContextListener {
 	//creates a "local" (in-memory) binding for testing purposes
 	private void bindLocalDataSource(ServletContextEvent sce) {
 		//create a database
-		BasicDataSource factory = new BasicDataSource();
+		final BasicDataSource factory = new BasicDataSource();
 		factory.setDriverClassName("org.h2.Driver");//TODO - remove hardcoding
 		factory.setUrl("jdbc:h2:mem:a");
 		factory.setUsername("sa");
@@ -44,11 +44,12 @@ public class DatasourceListener implements ServletContextListener {
 	
 	//runs the cloud configuration component
 	private boolean bindCloudDataSource(ServletContextEvent sce) {
-		DataSource dataSource = cloudConfiguration.inventoryDataSource();
+		boolean result = false;
+		final DataSource dataSource = cloudConfiguration.inventoryDataSource();
 		if (dataSource != null) {
 			sce.getServletContext().setAttribute(DATASOURCE_ATTRIBUTE, dataSource);
-			return true;
+			result = true;
 		}//end if
-		return false;
+		return result;
 	}
 }
